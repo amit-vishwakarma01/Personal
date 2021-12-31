@@ -1,0 +1,48 @@
+"""
+App URL
+"""
+from django.contrib import admin
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('home',views.home,name="home"),
+    path('logout',views.logout,name="logout"),
+    path('change_Password',views.change_Password,name="change_Password"),
+    path('authenticate',views.authenticate,name="authenticate"),
+    path('dashboard',views.dashboard,name="dashboard"),
+    path('add',views.add,name="add"),
+    path('Add_detail',views.Add_detail,name="Add_detail"),
+    path('companies',views.companies,name="companies"),
+    path('viewdetail',views.viewdetail,name="viewdetail"),
+    path('changestatus',views.changestatus,name="changestatus"),
+    path('updates',views.updates,name="updates"),
+    path('changedetail',views.changedetail,name="changedetail"),
+    path('updatedetail',views.updatedetail,name="updatedetail"),
+    path('companysearch',views.companysearch,name="companysearch"),
+    path('create_user_account', views.create_user_account, name="create_user_account"),
+    path('created', views.created, name="created"),
+    path('myprofile', views.myprofile, name="myprofile"),
+    path('update', views.update, name="update"),
+    path('change', views.change, name="change"),
+    path('users', views.users, name="users"),
+    path('deleteuseraccount', views.deleteuseraccount, name="deleteuseraccount"),
+    path('getpassword', views.getpassword, name="getpassword"),
+    path('datesearch', views.datesearch, name="datesearch"),
+    path('sortdate', views.sortdate, name="sortdate"),
+    path('sortcompany', views.sortcompany, name="sortcompany"),
+    path('sortctc', views.sortctc, name="sortctc"),
+    path('sortjobid', views.sortjobid, name="sortjobid"),
+    path('sortdate1', views.sortdate1, name="sortdate1"),
+    path('sortcompany1', views.sortcompany1, name="sortcompany1"),
+    path('sortctc1', views.sortctc1, name="sortctc1"),
+    path('sortjobid1', views.sortjobid1, name="sortjobid1"),
+    path('forget_password',views.forget_password,name="forget_password"),
+    path('check_detail', views.check_detail, name="check_detail"),
+    path('confirm_pass', views.confirm_pass, name="confirm_pass"),
+    path('authenticates',views.authenticates,name="authenticates"),
+    path('otherusers',views.otherusers,name="otherusers"),
+    path('maketodo',views.maketodo,name="maketodo"),
+    path('Add_tododetail',views.Add_tododetail,name="Add_tododetail"),
+    path('viewtodo',views.viewtodo,name="viewtodo"),
+    path('donetodo',views.donetodo,name="donetodo"),
+]

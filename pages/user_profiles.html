@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet"href="{% static 'CSS/style.css' %}"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<title>User Profiles</title>
+  <script type="text/javascript">
+      $(function () {
+        setTimeout(function () {
+          $("#hideDiv").fadeOut(1500);
+        }, 3000);
+      });
+    </script>
+	<style>
+    html,body{
+background-image: url('https://images.unsplash.com/photo-1549880340-c42a50d83674?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  text-align: left;
+  padding: 8px;
+}
+.newdiv
+{
+	margin-top: 3%;
+	margin-bottom: 2%;
+}
+.profile {
+        width: 85%;
+        margin-left: 10%;
+        padding: 20px;
+        border:2px solid black;
+box-shadow: 1px 1px 3px rgba(1, 1, 1, 1);
+background-color:#D4EFDF ;
+      }
+
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-light" style="background-color: #FEF9E7 ;">
+      <div class="container-fluid">
+        <div class="navbar-header navbar-right">
+
+          <ul class="nav navbar-nav">
+
+            <li class="active"><a href="dashboard"><b style="color: black">DASHBOARD</b></a></li>
+            <li class="active"><a href="myprofile"><b style="color: black">MY PROFILE</b></a></li>
+            <li class="active">
+              <a href="change_Password"><b style="color: black;">CHANGE PASSWORD</b></a>
+            </li>
+          </ul>
+          <a href="logout"><button class="btn btn-danger navbar-btn">LOGOUT</button></a>
+        </div>
+        <div class="box">
+       <a href="dashboard">
+        
+        <h4 style="font-family:Impact, fantasy;font-weight: 300;"><i>Personal</i></h4>
+        </a>
+      </div>
+      </div>
+    </nav>
+
+<div class="container">
+	<div class="newdiv"> 
+		<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+          <!--- Search by Company Name --->
+          <div class="container-fluid-left">
+            <form
+              class="navbar-form navbar-left"
+              action="companysearch"
+              method="post"
+            >
+              {% csrf_token %}
+              <div class="form-group">
+                <b>Company Name</b>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search by Company Name"
+                  name="search" required
+                />
+              </div>
+              <button type="submit" class="btn btn-success">Search</button>
+            </form>
+          </div>
+
+          <div class="container-fluid-left">
+            <form
+              class="navbar-form navbar-left"
+              action="datesearch"
+              method="post"
+            >
+              {% csrf_token %}
+              <div class="form-group">
+                <b>Apply Date</b>
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="Search by Company Name"
+                  name="search" required
+                />
+              </div>
+              <button type="submit" class="btn btn-success">Search</button>
+            </form>
+          </div>
+        </nav>
+	&emsp;<a href="dashboard"><b style="color:black;">HOME</b></a><b> >></b><a href="users"><b style="color:black;">User Profiles</b></a><b> >></b>
+
+
+
+  <div id="hideDiv">
+         <center> <h3 style="color:green;">{{error}}</h3></center>
+        </div>
+        <div class="profile">
+          <table class="table">
+      <tr>
+        <th>Email Address</th>
+        <th>Name</th>
+        <th>Mobile Number</th>
+        <th>Date Of Birth</th>
+        <th>Delete Account</th>
+
+      </tr>
+        <tbody>
+      {% for i in res %}
+      <tr>
+        <td>{{i.username}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.dob}}</td>
+        <td><a href="deleteuseraccount?d={{i.username}}">
+          <span class="glyphicon glyphicon-trash">
+        </a></td>
+      </tr>
+      {% endfor %}
+        </tbody>
+        </table>
+        </div>
+</div>
+</div>
+
+
+</body>
+</html>
