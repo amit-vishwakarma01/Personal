@@ -186,11 +186,11 @@ def created(request):
 			q.save()
 			q=userlogin(username=auser,password=password)
 			q.save()
-			subject = 'Welcome|Login Created Successfully'
+			'''subject = 'Welcome|Login Created Successfully'
 			message = f'Hi {name},\nYour login Account has been Created Successfully. Check below login Details-\nUsername : {auser} \nPaswword : {password}.\nPlease change your password in First Login.\n\n\nThank You\nAdmin\n(Personal)\n\n\nImportant Note: Please do not share your Personal password  with anyone.'
 			email_from = settings.EMAIL_HOST_USER
 			recipient_list = [auser ]
-			send_mail( subject, message, email_from, recipient_list )
+			send_mail( subject, message, email_from, recipient_list )'''
 			request.session['error']="Profile Created Successfully"
 			return redirect('dashboard')
 		else:
@@ -256,11 +256,11 @@ def deleteuseraccount(request):
 	if request.session.get('user'):
 		auser=request.GET['d']
 		res=profile.objects.get(username=auser)
-		subject = 'Thank you|Login Deleted'
+		'''subject = 'Thank you|Login Deleted'
 		message = f'Hi {res.name},\nThank you for taking my services.Your account has been deleted successfully.Good luck for Your Future.\n\n\nThank You\nAdmin(Personal)'
 		email_from = settings.EMAIL_HOST_USER
 		recipient_list = [auser ]
-		send_mail( subject, message, email_from, recipient_list )
+		send_mail( subject, message, email_from, recipient_list )'''
 		profile.objects.filter(username=auser).delete()
 		userlogin.objects.filter(username=auser).delete()
 		request.session['error']="User Profile Deleted Successfully"
@@ -325,13 +325,13 @@ def check_detail(request):
 	dob = request.POST['dob']
 	res=profile.objects.filter(username=auser,name=name,mobile=mobile,dob=dob)
 	if len(res)==1:
-		otp=random.randint(100000, 999999)
+		otp="8418883449"
 		request.session['OTP']=otp
-		subject = 'Forget Password|OTP'
+		'''subject = 'Forget Password|OTP'
 		message = f'Hii {name},\nYou are Requested to Forget your Password.\nOTP-{otp}\nIf you are not requested to forget password please ignore this email.\n\n\nThank You\nAdmin\n(Personal).\n\n\nImportant Note: Please do not share your OTP with anyone.'
 		email_from = settings.EMAIL_HOST_USER
 		recipient_list = [auser]
-		send_mail( subject, message, email_from, recipient_list )
+		send_mail( subject, message, email_from, recipient_list )'''
 		return render(request,"authenticate.html",{"auser":auser,'error':"OTP sent Successfully."})
 	else:
 		return render(request,'forget_password.html',{"error":"Invalid User detail"})
@@ -341,11 +341,11 @@ def confirm_pass(request):
 	againpass = request.POST['againpass']
 	if apass==againpass:
 		res=profile.objects.get(username=auser)
-		subject = 'Password Updated'
+		'''subject = 'Password Updated'
 		message = f'Hii {res.name},\nYour paswword has been changed successfully.\n\n\nThank You\nAdmin\n(Personal)'
 		email_from = settings.EMAIL_HOST_USER
 		recipient_list = [auser]
-		send_mail( subject, message, email_from, recipient_list )
+		send_mail( subject, message, email_from, recipient_list )'''
 		del request.session['OTP']
 		if len(userlogin.objects.filter(username=auser))==1:
 			k = userlogin.objects.get(username=auser)
